@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LibreTap">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.LibreTap">
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".service.AutoClickService"
+            android:name=".services.AutoClickService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:exported="true">
             <intent-filter>
