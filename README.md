@@ -1,6 +1,6 @@
 # LibreTap
 
-LibreTap is a **rootless**, fully **free software** Android auto clicker.  
+LibreTap is a **rootless**, **fully free** software Android auto clicker.  
 It provides a simple interface for casual users and a script-based advanced mode for power users.  
 
 ## Features
