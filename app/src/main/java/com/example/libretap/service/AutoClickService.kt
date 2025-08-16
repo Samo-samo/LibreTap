@@ -7,23 +7,30 @@ import android.view.accessibility.AccessibilityEvent
 
 class AutoClickService : AccessibilityService() {
 
-    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-        // Şimdilik boş bırakıyoruz, olayları dinlemeyeceğiz
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+        instance = this
     }
 
-    override fun onInterrupt() {
-        // Servis kesildiğinde yapılacak işler
+    override fun onDestroy() {
+        super.onDestroy()
+        if (instance === this) instance = null
     }
 
-    fun performClick(x: Float, y: Float) {
-        val path = Path().apply {
-            moveTo(x, y)
-        }
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) { /* no-op */ }
 
-        val gesture = GestureDescription.Builder()
-            .addStroke(GestureDescription.StrokeDescription(path, 0, 50))
-            .build()
+    override fun onInterrupt() { /* no-op */ }
 
+    fun performClick(x: Float, y: Float, durationMs: Long = 50L) {
+        val path = Path().apply { moveTo(x, y) }
+        val stroke = GestureDescription.StrokeDescription(path, 0, durationMs)
+        val gesture = GestureDescription.Builder().addStroke(stroke).build()
         dispatchGesture(gesture, null, null)
+    }
+
+    companion object {
+        @JvmStatic
+        var instance: AutoClickService? = null
+            private set
     }
 }
