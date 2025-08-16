@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LibreTap</string>
+    <string name="accessibility_service_description">LibreTap ekran tıklamalarını simüle etmek için erişilebilirlik servisi kullanır.</string>
 </resources>
